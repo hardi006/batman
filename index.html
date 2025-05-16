@@ -1,109 +1,104 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<title></title>
+	<title>Birthday Card</title>
 	<style type="text/css">
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: start;
-  min-height: 100vh;
-  background-color: #fceaff;
-}
+		body {
+			height: 100%;
+			margin: 0;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+		}
 
+		.card {
+			position: relative;
+			width: 300px;
+			height: 445px;
+			border: 10px solid #9612eb;
+			margin: 60px auto;
+			box-shadow: inset 10px 0px 15px 0px rgba(0, 0, 0, 0.1);
+			background-image: linear-gradient(to bottom, rgba(255, 255, 255), rgba(241, 135, 135, 0.5)), url("https://images.unsplash.com/photo-1527481138388-31827a7c94d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-color: #fceaff;
+		}
 
+		.card .text-container {
+			width: 80%;
+			height: 80%;
+			margin: auto;
+		}
 
-.card {
-  width: 90%;
-  max-width: 400px;
-  margin: 20px auto;
-  display: block;
-}
- .card .text-container {
-	 width: 80%;
-	 height: 80%;
-	 margin: auto;
-}
- .strikethrough {
-	 text-decoration: line-through;
-}
- .card .text-container #head {
-	 font-family: 'Nobile', sans-serif;
-	 font-size: 1.5em;
-	 margin: 60px auto 60px auto;
-}
- .card p {
-	 font-size: 1.1em;
-	 line-height: 1.4;
-	 font-family: 'Nobile';
-	 color: #331717;
-	 font-style: italic;
-	 text-align: center;
-	 margin: 30px auto 0px auto;
-	 
-}
- .card .front {
-	 position: absolute;
-	 width: 100%;
-	 height: 100%;
-	 margin: -10px 0px 0px -10px;
-	 border: 10px solid #9612eb;
-	 backface-visibility: hidden;
-	 background-color: #9612eb;
-	/* background-image: url($cover-image);
-	 */
-	 background-size: contain;
-	 transform-style: preserve-3d;
-	 transform-origin: 0% 50%;
-	 transform: perspective(800px) rotateY(0deg);
-	 transition: all 0.8s ease-in-out;
-}
- .card:hover .front {
-	 transform: perspective(800px) rotateY(-170deg);
-	 background-color: #41718d;
-}
- .card:hover .back {
-	 transform: perspective(800px) rotateY(-170deg);
-	 box-shadow: 7px 0px 5px 0px rgba(0, 0, 0, 0.3), inset 2px 0px 15px 0px rgba(0, 0, 0, 0.1);
-	 background-color: #d2dcd2;
-}
- .card .back {
-	 position: absolute;
-	 width: fit-content;
-	 height: 100%;
-	 border: 10px solid #9612eb;
-	 margin: -10px 0px 0px -10px;
-	 backface-visibility: visible;
-	 filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, .5));
-	 transform-style: preserve-3d;
-	 transform-origin: 0% 50%;
-	 transform: perspective(800px) rotateY(0deg);
-	 transition: all 0.8s ease-in-out;
-	 background-color: #e6f0e6;
-	 box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.1);
-}
-.imgset {
+		.card .text-container #head {
+			font-family: 'Nobile', sans-serif;
+			font-size: 1.3em;
+			margin: auto;
+		}
+
+		.card p {
+			font-size: 1.1em;
+			line-height: 1.4;
+			font-family: 'Nobile';
+			color: #331717;
+			font-style: italic;
+			text-align: center;
+			margin: 30px auto 0px auto;
+		}
+
+		.card .front,
+		.card .back {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			margin: -10px 0px 0px -10px;
+			border: 10px solid #9612eb;
+			transform-style: preserve-3d;
+			transform-origin: 0% 50%;
+			transition: all 0.8s ease-in-out;
+		}
+
+		.card .front {
+			backface-visibility: hidden;
+			background-color: #9612eb;
+			transform: perspective(800px) rotateY(0deg);
+		}
+
+		.card .back {
+			backface-visibility: visible;
+			transform: perspective(800px) rotateY(0deg);
+			background-color: #e6f0e6;
+			filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, .5));
+		}
+
+		.card:hover .front {
+			transform: perspective(800px) rotateY(-170deg);
+			background-color: #41718d;
+		}
+
+		.card:hover .back {
+			transform: perspective(800px) rotateY(-170deg);
+			box-shadow: 7px 0px 5px 0px rgba(0, 0, 0, 0.3), inset 2px 0px 15px 0px rgba(0, 0, 0, 0.1);
+			background-color: #d2dcd2;
+		}
+
+		.imgset {
   position: relative;
   z-index: 1;
-  height: 100%;
-  overflow-y: auto; /* Add scroll if content overflows */
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding-right: 5px; /* Prevent image cut-off */
+  gap: 10px; /* adds space between images */
+  height: 100%;
+  overflow: hidden;
 }
 
 .imgset img {
   width: 100%;
-  height: auto;
-  object-fit: contain;
+  height: auto; /* force each image to take half the height */
+  object-fit: cover;
   box-shadow: 0px 6px 11px 7px rgba(0, 0, 0, 0.22);
   border-radius: 5px;
 }
-
 .balloon-container {
   position: fixed;
   bottom: -150px;
@@ -137,15 +132,6 @@ body {
   background: #444;
   transform: translateX(-50%);
 }
- #confetti-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-}
 
 @keyframes floatUp {
   0% {
@@ -167,6 +153,15 @@ body {
     opacity: 0;
   }
 }
+#confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
 .gift-container {
   position: fixed;
   bottom: 30px;
@@ -185,7 +180,7 @@ body {
 }
 
 .lid, .box {
-  position: absolute;
+  position: absolte;
   width: 100px;
   height: 50px;
   background: #ff4081;
@@ -241,44 +236,42 @@ body {
   50% { transform: translateY(-10px); }
 }
 
-@media (max-width: 600px) {
-  .card {
-    width: 95%;
-    max-width: 100%;
-  }
-}
-
-
-
-
 	</style>
 </head>
 <body>
 
-<body>
-	
 <div class="card">
- <div class="back">
-	<div class="imgset">
-		 <img width="100%" src="image1.jpeg">
-		 <img width="100%" src="image2.jpeg" class="imageset2">
-	   </div>
-  </div>
-  <div class="left">
- </div>
-  <div class="front">
-    <div class="imgset">
-         <img width="100%" src="https://1.bp.blogspot.com/-Mgj9-rbs65E/XfMoPSD5gtI/AAAAAAAAURk/NBokE2gSS2cTSJ2em5lZ5hJDuTtRN7UVwCLcBGAsYHQ/s1600/2713997.png" class="card">
-       </div>
- </div>
- <div class="right">
+	<div class="back">
+		<div class="imgset">
+			<img src="image1.jpeg" alt="First Image">
+			<img src="image2.jpeg" alt="Second Image">
+		</div>
 	</div>
-  <div class="text-container">
-    <p id="head">Happy Birthday!</p>
-    <h5>@LPW_Sajid</h5>
-    <p>I hope your special day will bring you lots of happiness, love, and fun. You deserve them a lot. Enjoy!</p>
-    <p>Hope your day goes great!</p>
-  </div>
+
+	<div class="front">
+		<div class="imgset">
+			<img src="https://1.bp.blogspot.com/-Mgj9-rbs65E/XfMoPSD5gtI/AAAAAAAAURk/NBokE2gSS2cTSJ2em5lZ5hJDuTtRN7UVwCLcBGAsYHQ/s1600/2713997.png" alt="Cake Image">
+		</div>
+	</div>
+
+	<div class="text-container">
+		<p id="head">Happy Birthday!</p>
+		
+		<p>In the garden of knowledge, you help us grow,
+With patience and care, like soft morning glow.
+You plant the seeds of dreams and grace,
+With every lesson, you light up the place.
+Your words are stars that guide our way,
+Turning the darkest nights into day.
+With every page, you help us see,
+The strength in truth, the power to be.
+So on this day, we hope you find,
+The joy you give returned in kind.
+May laughter bloom and wishes come true—
+For the world is brighter because of you.
+Happy Birthday!</p>
+		
+	</div>
 </div>
 <div class="balloon-container">
   <div class="balloon" style="--color: #ff6b6b; --left: 10%; --delay: 0s;"></div>
@@ -293,6 +286,8 @@ body {
   Your browser does not support the audio element.
 </audio>
 <button onclick="document.getElementById('bg-music').muted = false;" style="position: fixed; top: 20px; right: 20px; z-index: 999; background-color: #ff6b6b; color: white; border: none; padding: 10px; border-radius: 8px;">Play Music</button>
+
+
 <div class="gift-container">
   <div class="gift-box" onclick="openGift()">
     <div class="lid"></div>
@@ -300,15 +295,12 @@ body {
     <div class="ribbon"></div>
   </div>
   <div id="gift-message" class="message hidden">
-    Surprise! Hope your birthday is as awesome as you are! 
+     Surprise! Hope your birthday is as awesome as you are! 
   </div>
 </div>
-
-
-
-
+ 
 <script>
-	
+   
   function openGift() {
     document.querySelector(".lid").style.transform = "rotateX(-120deg)";
     document.getElementById("gift-message").classList.remove("hidden");
@@ -358,9 +350,8 @@ body {
   }
 
   draw();
+  
 </script>
 
- 
-</body>
 </body>
 </html>
