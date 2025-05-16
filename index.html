@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head <meta name="viewport" content="width=device-width, initial-scale=1.0">
+>
 	<title></title>
 	<style type="text/css">
 body {
-  height: 100%;
-  margin: 0;
-  background: linear-gradient(to top right, #ffecd2, #fcb69f);
-  overflow: hidden;
-  font-family: 'Nobile', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  min-height: 100vh;
+  background-color: #fceaff;
 }
+
 
 
 .card {
@@ -244,6 +247,36 @@ body {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 }
+
+@media (max-width: 600px) {
+  .card {
+    width: 95%;
+    margin: 20px auto;
+    border-width: 6px;
+  }
+
+  .card p {
+    font-size: 1em;
+    margin: 10px auto;
+  }
+
+  .card .text-container {
+    width: 90%;
+    height: auto;
+    margin: auto;
+  }
+
+  .gift-container {
+    transform: scale(0.8);
+    bottom: 10px;
+  }
+
+  #confetti-canvas {
+    height: 100vh;
+    width: 100vw;
+  }
+}
+
 
 	</style>
 </head>
