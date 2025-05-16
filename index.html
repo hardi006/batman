@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+body {
+  height: 100%;
+  margin: 0;
+  background: linear-gradient(to top right, #ffecd2, #fcb69f);
+  overflow: hidden;
+  font-family: 'Nobile', sans-serif;
+}
+
+
+.card {
+	 position: relative;
+	 width: 300px;
+	 height: 425px;
+	 border: 10px solid #9612eb;
+	 margin: 60px auto 0 auto;
+	 box-shadow: inset 10px 0px 15px 0px rgba(0, 0, 0, 0.1);
+     background-image: linear-gradient(to bottom, rgba(255, 255, 255), rgba(255, 255, 255, 0.5)), url("https://images.unsplash.com/photo-1527481138388-31827a7c94d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
+
+	background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover;
+	background-color: #e6f0e6;
+}
+ .card .text-container {
+	 width: 80%;
+	 height: 80%;
+	 margin: auto;
+}
+ .strikethrough {
+	 text-decoration: line-through;
+}
+ .card .text-container #head {
+	 font-family: 'Nobile', sans-serif;
+	 font-size: 1.5em;
+	 margin: 60px auto 60px auto;
+}
+ .card p {
+	 font-size: 1.1em;
+	 line-height: 1.4;
+	 font-family: 'Nobile';
+	 color: #331717;
+	 font-style: italic;
+	 text-align: center;
+	 margin: 30px auto 0px auto;
+	 
+}
+ .card .front {
+	 position: absolute;
+	 width: 100%;
+	 height: 100%;
+	 margin: -10px 0px 0px -10px;
+	 border: 10px solid #9612eb;
+	 backface-visibility: hidden;
+	 background-color: #9612eb;
+	/* background-image: url($cover-image);
+	 */
+	 background-size: contain;
+	 transform-style: preserve-3d;
+	 transform-origin: 0% 50%;
+	 transform: perspective(800px) rotateY(0deg);
+	 transition: all 0.8s ease-in-out;
+}
+ .card:hover .front {
+	 transform: perspective(800px) rotateY(-170deg);
+	 background-color: #41718d;
+}
+ .card:hover .back {
+	 transform: perspective(800px) rotateY(-170deg);
+	 box-shadow: 7px 0px 5px 0px rgba(0, 0, 0, 0.3), inset 2px 0px 15px 0px rgba(0, 0, 0, 0.1);
+	 background-color: #d2dcd2;
+}
+ .card .back {
+	 position: absolute;
+	 width: fit-content;
+	 height: 100%;
+	 border: 10px solid #9612eb;
+	 margin: -10px 0px 0px -10px;
+	 backface-visibility: visible;
+	 filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, .5));
+	 transform-style: preserve-3d;
+	 transform-origin: 0% 50%;
+	 transform: perspective(800px) rotateY(0deg);
+	 transition: all 0.8s ease-in-out;
+	 background-color: #e6f0e6;
+	 box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.1);
+}
+.imgset {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  overflow-y: auto; /* Add scroll if content overflows */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 5px; /* Prevent image cut-off */
+}
+
+.imgset img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  box-shadow: 0px 6px 11px 7px rgba(0, 0, 0, 0.22);
+  border-radius: 5px;
+}
+
+.balloon-container {
+  position: fixed;
+  bottom: -150px;
+  width: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.balloon {
+  position: absolute;
+  bottom: -100px;
+  left: var(--left);
+  width: 40px;
+  height: 55px;
+  background: var(--color);
+  border-radius: 50% 50% 50% 50%;
+  animation: floatUp 10s infinite ease-in;
+  animation-delay: var(--delay);
+  opacity: 0.8;
+  box-shadow: inset -4px -8px rgba(255, 255, 255, 0.3);
+  transform: scale(1) rotate(0deg);
+}
+
+.balloon::after {
+  content: "";
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  width: 2px;
+  height: 25px;
+  background: #444;
+  transform: translateX(-50%);
+}
+ #confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  25% {
+    transform: translateY(-25vh) rotate(4deg);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-50vh) rotate(-4deg);
+  }
+  75% {
+    transform: translateY(-75vh) rotate(4deg);
+  }
+  100% {
+    transform: translateY(-100vh) rotate(-4deg);
+    opacity: 0;
+  }
+}
+.gift-container {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  text-align: center;
+}
+
+.gift-box {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  animation: bounce 1s infinite;
+}
+
+.lid, .box {
+  position: absolute;
+  width: 100px;
+  height: 50px;
+  background: #ff4081;
+}
+
+.lid {
+  top: 0;
+  transform-origin: bottom;
+  transition: transform 0.5s ease;
+  z-index: 2;
+}
+
+.box {
+  bottom: 0;
+  height: 70px;
+  z-index: 1;
+}
+
+.ribbon {
+  position: absolute;
+  width: 10px;
+  height: 100px;
+  background: yellow;
+  left: 45px;
+  top: 0;
+  z-index: 3;
+}
+
+.message {
+  margin-top: 15px;
+  background: #fffbe6;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-weight: bold;
+  color: #333;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+	</style>
+</head>
+<body>
+
+<body>
+	
+<div class="card">
+ <div class="back">
+	<div class="imgset">
+		 <img width="100%" src="image1.jpeg">
+		 <img width="100%" src="image2.jpeg" class="imageset2">
+	   </div>
+  </div>
+  <div class="left">
+ </div>
+  <div class="front">
+    <div class="imgset">
+         <img width="100%" src="https://1.bp.blogspot.com/-Mgj9-rbs65E/XfMoPSD5gtI/AAAAAAAAURk/NBokE2gSS2cTSJ2em5lZ5hJDuTtRN7UVwCLcBGAsYHQ/s1600/2713997.png">
+       </div>
+ </div>
+ <div class="right">
+	</div>
+  <div class="text-container">
+    <p id="head">Happy Birthday!</p>
+    <h5>@LPW_Sajid</h5>
+    <p>I hope your special day will bring you lots of happiness, love, and fun. You deserve them a lot. Enjoy!</p>
+    <p>Hope your day goes great!</p>
+  </div>
+</div>
+<div class="balloon-container">
+  <div class="balloon" style="--color: #ff6b6b; --left: 10%; --delay: 0s;"></div>
+  <div class="balloon" style="--color: #48dbfb; --left: 25%; --delay: 2s;"></div>
+  <div class="balloon" style="--color: #1dd1a1; --left: 40%; --delay: 4s;"></div>
+  <div class="balloon" style="--color: #feca57; --left: 55%; --delay: 1s;"></div>
+  <div class="balloon" style="--color: #5f27cd; --left: 70%; --delay: 3s;"></div>
+</div>
+<canvas id="confetti-canvas"></canvas>
+<audio id="bg-music" loop autoplay muted>
+  <source src="happy-birthday.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+<button onclick="document.getElementById('bg-music').muted = false;" style="position: fixed; top: 20px; right: 20px; z-index: 999; background-color: #ff6b6b; color: white; border: none; padding: 10px; border-radius: 8px;">Play Music</button>
+<div class="gift-container">
+  <div class="gift-box" onclick="openGift()">
+    <div class="lid"></div>
+    <div class="box"></div>
+    <div class="ribbon"></div>
+  </div>
+  <div id="gift-message" class="message hidden">
+    Surprise! Hope your birthday is as awesome as you are! 
+  </div>
+</div>
+
+
+
+
+<script>
+	
+  function openGift() {
+    document.querySelector(".lid").style.transform = "rotateX(-120deg)";
+    document.getElementById("gift-message").classList.remove("hidden");
+    document.getElementById("gift-message").classList.add("visible");
+  }
+  const confetti = document.getElementById('confetti-canvas');
+  const ctx = confetti.getContext('2d');
+  confetti.width = window.innerWidth;
+  confetti.height = window.innerHeight;
+
+  let confettiPieces = [];
+
+  for (let i = 0; i < 150; i++) {
+    confettiPieces.push({
+      x: Math.random() * confetti.width,
+      y: Math.random() * confetti.height,
+      r: Math.random() * 6 + 4,
+      d: Math.random() * 10 + 10,
+      color: `hsl(${Math.random() * 360}, 70%, 60%)`,
+      tilt: Math.floor(Math.random() * 10) - 10,
+      tiltAngleIncrement: Math.random() * 0.05 + 0.05,
+      tiltAngle: 0
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, confetti.width, confetti.height);
+    confettiPieces.forEach((p, i) => {
+      p.tiltAngle += p.tiltAngleIncrement;
+      p.y += Math.cos(p.d) + 1 + p.r / 2;
+      p.x += Math.sin(p.d);
+      p.tilt = Math.sin(p.tiltAngle) * 15;
+
+      ctx.beginPath();
+      ctx.lineWidth = p.r;
+      ctx.strokeStyle = p.color;
+      ctx.moveTo(p.x + p.tilt + p.r / 2, p.y);
+      ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 2);
+      ctx.stroke();
+
+      if (p.y > confetti.height) {
+        p.x = Math.random() * confetti.width;
+        p.y = -20;
+      }
+    });
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+</script>
+
+ 
+</body>
+</body>
+</html>
