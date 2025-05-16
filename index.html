@@ -13,7 +13,7 @@
 		.card {
 			position: relative;
 			width: 300px;
-			height: 445px;
+			height: 550px;
 			border: 10px solid #9612eb;
 			margin: 60px auto;
 			box-shadow: inset 10px 0px 15px 0px rgba(0, 0, 0, 0.1);
@@ -32,7 +32,7 @@
 
 		.card .text-container #head {
 			font-family: 'Nobile', sans-serif;
-			font-size: 1.3em;
+			font-size: 1.6em;
 			margin: auto;
 		}
 
@@ -87,16 +87,15 @@
   z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 10px; /* adds space between images */
   height: 100%;
   overflow: hidden;
 }
 
 .imgset img {
+  flex: 1;
   width: 100%;
-  height: auto; /* force each image to take half the height */
   object-fit: cover;
-  box-shadow: 0px 6px 11px 7px rgba(0, 0, 0, 0.22);
+   box-shadow: 0px 6px 11px 7px rgba(0, 0, 0, 0.22);
   border-radius: 5px;
 }
 .balloon-container {
@@ -243,14 +242,17 @@
 <div class="card">
 	<div class="back">
 		<div class="imgset">
-			<img src="image1.jpeg" alt="First Image">
-			<img src="image2.jpeg" alt="Second Image">
+      <img src="image1.jpeg">
+			<img src="image2.jpeg">
+			<img src="image3.jpeg">
+    
 		</div>
 	</div>
 
 	<div class="front">
-		<div class="imgset">
-			<img src="https://1.bp.blogspot.com/-Mgj9-rbs65E/XfMoPSD5gtI/AAAAAAAAURk/NBokE2gSS2cTSJ2em5lZ5hJDuTtRN7UVwCLcBGAsYHQ/s1600/2713997.png" alt="Cake Image">
+		<div class="imgset1">
+			<img src="https://1.bp.blogspot.com/-Mgj9-rbs65E/XfMoPSD5gtI/AAAAAAAAURk/NBokE2gSS2cTSJ2em5lZ5hJDuTtRN7UVwCLcBGAsYHQ/s1600/2713997.png" alt="Cake Image" height="
+      100%" width="100%"position="absolute" style="border-radius: 10px;">
 		</div>
 	</div>
 
